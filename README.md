@@ -13,7 +13,7 @@ The resulting certificate is **publicly trusted** — no browser warnings, no se
 
 ## Requirements
 
-- Python 3.9+
+- Python 3.9+ (or Docker)
 - Domain you own with access to its DNS settings
 
 ```bash
@@ -79,6 +79,39 @@ Always test with `--staging` first to avoid hitting [rate limits](https://letsen
 ```bash
 python3 create-cert.py my-domain.com --staging
 ```
+
+## Docker usage
+
+Build the image:
+
+```bash
+docker build -t create-simple-cert .
+```
+
+Run interactively (required for DNS challenge confirmation):
+
+```bash
+docker run -it create-simple-cert my-domain.com
+```
+
+With email for expiry notifications:
+
+```bash
+docker run -it create-simple-cert my-domain.com --email you@example.com
+```
+
+Test with staging first:
+
+```bash
+docker run -it create-simple-cert my-domain.com --staging
+```
+
+The container will:
+1. Show you the DNS TXT records to create
+2. Wait for you to press ENTER after creating them
+3. Print the **full certificate and private key contents** to stdout
+
+Copy the output and save to `my-domain.com.crt` and `my-domain.com.key` locally.
 
 ## Output files
 
