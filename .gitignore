@@ -1,0 +1,14 @@
+# Generated certificates and keys
+*.key
+*.crt
+*.pem
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# IDE
+.idea/
+.vscode/
